@@ -20,7 +20,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
-    <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+    <h4 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["firstname"]); ?></b>&nbsp<b><?php echo htmlspecialchars($_SESSION["lastname"]); ?></b>&nbsp<b><?php echo htmlspecialchars($_SESSION["middlename"]); ?><br></b>this account created at</h1><b><?php echo htmlspecialchars($_SESSION["created_at"]); ?></b>
+	  <h4 class="my-5">Your employee number is, <b><?php echo htmlspecialchars($_SESSION["id"]); ?></b>. and you are belong to <b><?php echo htmlspecialchars($_SESSION["role"]); ?></b> .</h1>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
         <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
