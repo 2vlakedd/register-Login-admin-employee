@@ -25,11 +25,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
-    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+   
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $sql = "SELECT id,role FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -109,27 +108,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 
 
-</head>
-<body>
 
 
+
+ <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; }
+        .wrapper{ width: 360px; padding-left: 60px; padding-top: 20px;}
+    </style>
    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
-<p><b><h1>REGISTER</h1></b></p>
+   </head>
+<body>
+<div class="wrapper">
+<h2>Sign Up</h2>
+        <p>Please fill this form to create an account.</p>
 <table>
 
 <td><b>First Name:</td>
-      <td><input type="text"  id="firstname" placeholder="ENTER"  name="firstname"></td>
+      <td><input type="text"  id="firstname"class="form-control" placeholder="ENTER"  name="firstname"></td>
   </tr>
       </tr>
       <tr>
 <td><b>Last Name:</td>
-      <td><input type="text"  id="lastname" placeholder="ENTER" name="lastname"></td>
+      <td><input type="text"  id="lastname"class="form-control" placeholder="ENTER" name="lastname"></td>
   </tr>
         </tr>
        <tr>
 <td><b>Middle Name:</td>
-      <td><input type="text"  id="middlename" placeholder="ENTER" name="middlename"></td>
+      <td><input type="text"  id="middlename" class="form-control" placeholder="ENTER" name="middlename"></td>
   </tr>
  </tr>
 
@@ -137,7 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      <tr>
 <td><b>Employee Number
 :</td>
-      <td><input type="text"  id="empnumber" placeholder="ENTER" name="empnumber"></td>
+      <td><input type="text"  id="empnumber"class="form-control" placeholder="ENTER" name="empnumber"></td>
   </tr><br>
   </tr>
 
@@ -158,7 +166,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <td> <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>"></td>
   </tr>
  <td><b>Role:</td>
-      <td> <select name="role">
+      <td> <select name="role" class="form-control">
   <option value="Admin">Admin</option>
   <option value="Employee">Employee</option></td>
   </tr>
@@ -168,7 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <td>                      </td>
 <td>
 
-      <input type="submit" name="insert" value="Register" />
+   <br>	   <input type="submit" name="insert"class="btn btn-primary" value="Register" />
 
 
 
@@ -185,15 +193,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-</body>
+
 
 </table >
 
   </form>
 <form method="get" action="Login.php">
-    <button type="submit">Sign In Instead</button>
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+&nbsp&nbsp&nbsp&nbsp&nbsp<br>   <button type="submit"class="btn btn-secondary ml-2">Sign In Instead</button>
+	
 </form>
-
+</body>
 </html>
 <?php
 
